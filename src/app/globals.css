@@ -1,1 +1,61 @@
 @import "tailwindcss";
+
+:root {
+    --background: #06050d;
+    --secondary: #100e18;
+    --text: #f4f4f4;
+    --primary: #484abc;
+}
+
+body {
+    font-family: var(--font);
+    font-style: normal;
+    background-color: var(--background);
+    color: var(--text);
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+h1.heading {
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.content {
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    font-weight: 500;
+}
+
+.button:hover {
+    background-color: transparent;
+    color: var(--primary);
+}
+
+@media screen and (max-width: 48rem) {
+    h1.heading {
+        font-size: 30px;
+    }
+}
