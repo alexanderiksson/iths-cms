@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import client from "../lib/contentful";
 
 export const metadata: Metadata = {
     title: "Home",
 };
 
 export default async function Home() {
-    const data = await client.getEntries({
-        content_type: "portfolio",
-    });
-
-    console.log(data);
-
     return (
         <div className="content">
             <section className="flex flex-col gap-8">
