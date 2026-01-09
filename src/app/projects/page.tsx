@@ -1,5 +1,6 @@
 import client from "@/lib/contentful";
 import ProjectCard from "@/components/ProjectCard";
+import { Asset } from "contentful";
 
 export default async function Projects() {
     const projects = await client.getEntries({
@@ -10,14 +11,20 @@ export default async function Projects() {
     return (
         <div className="content">
             <h1 className="heading">Projects</h1>
-            <div className="flex flex-col gap-4">
-                {projects.items.map((project, i) => (
-                    <ProjectCard
-                        key={i}
-                        title={project.fields.title as string}
-                        description={project.fields.description as string}
-                    />
-                ))}
+            <div className="flex flex-col gap-8">
+                {projects.items.map((project, i) => {
+                    const img = project.fields.image as Asset;
+
+                    return (
+                        <ProjectCard
+                            key={i}
+                            title={project.fields.title as string}
+                            description={project.fields.description as string}
+                            img={img.fields.file?.url as string}
+                            imgAlt={img.fields.title as string}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

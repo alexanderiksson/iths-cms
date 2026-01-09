@@ -11,6 +11,7 @@ export default async function Navbar() {
 
     const socialLinks = await client.getEntries({
         content_type: "socialLinks",
+        order: ["sys.createdAt"],
     });
 
     return (
@@ -30,7 +31,7 @@ export default async function Navbar() {
                     {navLinks.items.map((link, i) => (
                         <li key={i}>
                             <Link href={link.fields.slug as string}>
-                                {String(link.fields.name)}
+                                {link.fields.name as string}
                             </Link>
                         </li>
                     ))}
@@ -44,8 +45,8 @@ export default async function Navbar() {
                         <li key={i}>
                             <a href={String(link.fields.url)}>
                                 <Image
-                                    src={String(icon?.fields?.file?.url)}
-                                    alt={String(icon?.fields?.title)}
+                                    src={icon.fields.file?.url as string}
+                                    alt={icon.fields.title as string}
                                     width={24}
                                     height={24}
                                 />

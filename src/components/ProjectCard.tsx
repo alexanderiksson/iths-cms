@@ -1,13 +1,34 @@
+import Image from "next/image";
+
 interface ProjectCardProps {
     title: string;
     description: string;
+    img: string;
+    imgAlt: string;
 }
 
-export default function ProjectCard({ title, description }: ProjectCardProps) {
+export default function ProjectCard({
+    title,
+    description,
+    img,
+    imgAlt,
+}: ProjectCardProps) {
     return (
-        <div className="w-full p-6 bg-(--secondary) flex flex-col gap-4 rounded-2xl">
-            <h2>{title}</h2>
-            <p>{description}</p>
+        <div className="p-6 sm:p-8 flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-12 bg-(--secondary) rounded-4xl border border-white/5">
+            <div className="relative w-full sm:w-1/2 aspect-4/3 overflow-hidden rounded-2xl">
+                <Image
+                    src={`https:${img}`}
+                    alt={imgAlt}
+                    fill
+                    className="object-contain"
+                />
+            </div>
+            <div className="flex flex-col gap-4 sm:w-1/2 relative">
+                <h2 className="text-2xl font-medium text-center sm:text-left truncate">
+                    {title}
+                </h2>
+                <p>{description}</p>
+            </div>
         </div>
     );
 }
