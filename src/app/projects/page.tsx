@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import client from "@/lib/contentful";
 import ProjectCard from "@/components/ProjectCard";
 import { Asset } from "contentful";
+
+export const metadata: Metadata = {
+    title: "Projects",
+};
 
 export default async function Projects() {
     const projects = await client.getEntries({
