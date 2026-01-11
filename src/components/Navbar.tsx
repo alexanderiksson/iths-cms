@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import client from "../lib/contentful";
-import { Asset } from "contentful";
+import { Asset, Entry } from "contentful";
 
 export default async function Navbar() {
     const navLinks = await client.getEntries({
@@ -28,19 +28,24 @@ export default async function Navbar() {
 
             <nav>
                 <ul className="flex flex-col gap-1 text-[22px] font-medium">
-                    {navLinks.items.map((link, i) => (
-                        <li key={i}>
-                            <Link href={link.fields.slug as string}>
-                                {link.fields.name as string}
-                            </Link>
-                        </li>
-                    ))}
+                    {navLinks.items.map((link, i) => {
+                        const page = link.fields.page as Entry;
+
+                        return (
+                            <li key={i}>
+                                <Link href={page.fields.slug as string}>
+                                    {link.fields.name as string}
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
             </nav>
 
             <ul className="flex gap-6 text-white">
                 {socialLinks.items.map((link, i) => {
                     const icon = link.fields.icon as Asset;
+
                     return (
                         <li key={i}>
                             <a href={String(link.fields.url)}>
