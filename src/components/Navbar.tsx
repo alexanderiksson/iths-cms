@@ -15,7 +15,7 @@ export default async function Navbar() {
     });
 
     return (
-        <aside className="hidden fixed left-0 top-0 bottom-0 w-56 lg:flex flex-col justify-between gap-8 pt-20 pb-8 px-12">
+        <aside className="hidden fixed left-0 top-0 bottom-0 w-56 lg:flex flex-col justify-between gap-8 py-8 px-12">
             <Link href="/" className="inline-flex items-center">
                 <Image
                     src="/logo.png"
