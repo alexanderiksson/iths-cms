@@ -50,7 +50,10 @@ export default async function Navbar() {
                         <li key={i}>
                             <a href={String(link.fields.url)}>
                                 <Image
-                                    src={icon.fields.file?.url as string}
+                                    src={
+                                        ("https://" +
+                                            icon.fields.file?.url) as string
+                                    }
                                     alt={icon.fields.title as string}
                                     width={24}
                                     height={24}
