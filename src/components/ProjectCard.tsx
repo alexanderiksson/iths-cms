@@ -18,7 +18,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
     return (
         <Link href={`/projects/${slug}`}>
-            <div className="p-6 sm:p-8 flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-12 bg-(--secondary) rounded-4xl border border-white/5">
+            <div className="p-6 sm:p-8 flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-12 bg-(--secondary) rounded-4xl border border-neutral-500/5">
                 <div className="relative w-full sm:w-1/2 aspect-4/3 overflow-hidden rounded-2xl">
                     <Image
                         src={`https:${img}`}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
     return (
-        <div className="content">
+        <div className="content my-auto">
             <section className="flex flex-col gap-8">
                 <h1 className="sm:text-4xl text-3xl font-medium">
                     <div className="flex gap-2 items-center mb-4">

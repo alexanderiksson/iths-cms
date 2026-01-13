@@ -2,7 +2,7 @@
 
 :root {
     --background: #ffffff;
-    --secondary: #f1f1f1;
+    --secondary: #f0eeee;
     --text: #1c1c1c;
     --primary: #484abc;
 }
@@ -31,7 +31,8 @@ h1.heading {
 .content {
     max-width: 1000px;
     width: 90%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .button {

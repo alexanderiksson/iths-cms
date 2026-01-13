@@ -24,18 +24,21 @@ export default async function Projects() {
                     <p>No projects found</p>
                 ) : (
                     projects.map((project, i) => {
+                        const slug = project.fields.slug as string;
+                        const title = project.fields.title as string;
+                        const desc = project.fields.description as string;
                         const img = project.fields.image as Asset;
+                        const imgURL = img.fields.file?.url as string;
+                        const imgAlt = img.fields.title as string;
 
                         return (
                             <ProjectCard
                                 key={i}
-                                slug={project.fields.slug as string}
-                                title={project.fields.title as string}
-                                description={
-                                    project.fields.description as string
-                                }
-                                img={img.fields.file?.url as string}
-                                imgAlt={img.fields.title as string}
+                                slug={slug}
+                                title={title}
+                                description={desc}
+                                img={imgURL}
+                                imgAlt={imgAlt}
                             />
                         );
                     })

@@ -17,25 +17,21 @@ export default async function Navbar() {
     return (
         <aside className="hidden fixed left-0 top-0 bottom-0 w-56 lg:flex flex-col justify-between gap-8 py-8 px-12">
             <Link href="/" className="inline-flex items-center">
-                <Image
-                    src="/logo.png"
-                    alt="Logo"
-                    width={40}
-                    height={40}
-                    priority
-                />
+                Alexander
+                <br />
+                Eriksson
             </Link>
 
             <nav>
                 <ul className="flex flex-col gap-1 text-[22px] font-medium">
                     {navLinks.items.map((link, i) => {
+                        const name = link.fields.name as string;
                         const page = link.fields.page as Entry;
+                        const slug = page.fields.slug as string;
 
                         return (
                             <li key={i}>
-                                <Link href={("/" + page.fields.slug) as string}>
-                                    {link.fields.name as string}
-                                </Link>
+                                <Link href={"/" + slug}>{name}</Link>
                             </li>
                         );
                     })}
@@ -44,17 +40,17 @@ export default async function Navbar() {
 
             <ul className="flex gap-6 text-white">
                 {socialLinks.items.map((link, i) => {
+                    const url = link.fields.url as string;
                     const icon = link.fields.icon as Asset;
+                    const iconURL = icon.fields.file?.url as string;
+                    const iconAlt = icon.fields.title as string;
 
                     return (
                         <li key={i}>
-                            <a href={String(link.fields.url)}>
+                            <a href={url}>
                                 <Image
-                                    src={
-                                        ("https://" +
-                                            icon.fields.file?.url) as string
-                                    }
-                                    alt={icon.fields.title as string}
+                                    src={"https://" + iconURL}
+                                    alt={iconAlt}
                                     width={24}
                                     height={24}
                                 />
