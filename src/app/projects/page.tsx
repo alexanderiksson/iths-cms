@@ -23,6 +23,7 @@ export default async function Projects() {
                     return (
                         <ProjectCard
                             key={i}
+                            slug={project.fields.slug as string}
                             title={project.fields.title as string}
                             description={project.fields.description as string}
                             img={img.fields.file?.url as string}

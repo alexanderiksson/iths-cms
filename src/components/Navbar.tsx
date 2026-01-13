@@ -33,7 +33,7 @@ export default async function Navbar() {
 
                         return (
                             <li key={i}>
-                                <Link href={page.fields.slug as string}>
+                                <Link href={("/" + page.fields.slug) as string}>
                                     {link.fields.name as string}
                                 </Link>
                             </li>
