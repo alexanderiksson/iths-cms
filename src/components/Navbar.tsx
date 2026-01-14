@@ -16,14 +16,15 @@ export default async function Navbar() {
 
     return (
         <aside className="hidden fixed left-0 top-0 bottom-0 w-56 lg:flex flex-col justify-between gap-8 py-8 px-12">
-            <Link href="/" className="inline-flex items-center">
-                Alexander
-                <br />
-                Eriksson
+            <Link
+                href="/"
+                className="inline-flex items-center font-medium text-2xl"
+            >
+                Alex
             </Link>
 
             <nav>
-                <ul className="flex flex-col gap-1 text-[22px] font-medium">
+                <ul className="flex flex-col gap-1 text-2xl">
                     {navLinks.items.map((link, i) => {
                         const name = link.fields.name as string;
                         const page = link.fields.page as Entry;
@@ -51,8 +52,8 @@ export default async function Navbar() {
                                 <Image
                                     src={"https://" + iconURL}
                                     alt={iconAlt}
-                                    width={24}
-                                    height={24}
+                                    width={20}
+                                    height={20}
                                 />
                             </a>
                         </li>

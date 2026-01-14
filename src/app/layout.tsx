@@ -18,7 +18,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={albertSans.className}>
                 <Navbar />
-                <main className="lg:ml-56 lg:mt-20 mt-32 mb-12 flex flex-col">
+                <main className="lg:ml-56 mt-8 mb-8 flex flex-col">
                     {children}
                 </main>
             </body>

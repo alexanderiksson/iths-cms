@@ -36,7 +36,11 @@ export default async function Projects() {
                                 key={i}
                                 slug={slug}
                                 title={title}
-                                description={desc}
+                                description={
+                                    desc.length > 150
+                                        ? desc.substring(0, 150) + "..."
+                                        : desc
+                                }
                                 img={imgURL}
                                 imgAlt={imgAlt}
                             />
