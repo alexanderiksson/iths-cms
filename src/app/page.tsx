@@ -9,14 +9,12 @@ export default async function Home() {
     return (
         <div className="content my-auto">
             <section className="flex flex-col gap-8">
-                <h1 className="text-4xl font-medium">
+                <h1 className="sm:text-4xl text-3xl font-medium">
                     <div className="flex gap-1 items-center mb-4">
                         <span className="text-neutral-500">Hello</span>
                         <span>👋</span>
                     </div>
-                    <span className="sm:text-4xl text-3xl">
-                        I&apos;m Alexander Eriksson, fullstack developer
-                    </span>
+                    <span>I&apos;m Alexander Eriksson, frontend developer</span>
                 </h1>
                 <div className="flex gap-4">
                     <Link href="/projects" className="button">

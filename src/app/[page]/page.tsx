@@ -8,7 +8,6 @@ interface PageProps {
     params: Promise<{ page: string }>;
 }
 
-/* Fetch content from contentful */
 async function fetchPage(slug: string) {
     const pageContent = await client.getEntries({
         content_type: "pages",
@@ -19,7 +18,6 @@ async function fetchPage(slug: string) {
     return pageContent.items[0];
 }
 
-/* Generate metadata from contentful */
 export async function generateMetadata({
     params,
 }: PageProps): Promise<Metadata> {
@@ -32,7 +30,6 @@ export async function generateMetadata({
     return { title: metatitle };
 }
 
-/* Render page */
 export default async function Page({ params }: PageProps) {
     const { page } = await params;
     const entry = await fetchPage(page);

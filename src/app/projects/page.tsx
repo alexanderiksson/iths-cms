@@ -27,9 +27,9 @@ export default async function Projects() {
                         const slug = project.fields.slug as string;
                         const title = project.fields.title as string;
                         const desc = project.fields.description as string;
-                        const img = project.fields.image as Asset;
-                        const imgURL = img.fields.file?.url as string;
-                        const imgAlt = img.fields.title as string;
+                        const img = project.fields.image as Asset | undefined;
+                        const imgURL = img?.fields.file?.url as string;
+                        const imgAlt = img?.fields.title as string;
 
                         return (
                             <ProjectCard
@@ -41,8 +41,12 @@ export default async function Projects() {
                                         ? desc.substring(0, 150) + "..."
                                         : desc
                                 }
-                                img={imgURL}
-                                imgAlt={imgAlt}
+                                img={
+                                    imgURL
+                                        ? `https:${imgURL}`
+                                        : "/placeholder.png"
+                                }
+                                imgAlt={imgAlt ?? "Placeholder image"}
                             />
                         );
                     })
