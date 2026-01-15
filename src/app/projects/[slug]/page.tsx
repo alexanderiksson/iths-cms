@@ -50,6 +50,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 <h1 className="text-white sm:text-4xl text-3xl font-semibold">
                     {project.fields.title as string}
                 </h1>
+
                 <div className="flex items-center flex-wrap gap-2">
                     {tags &&
                         tags.map((tag, i) => (

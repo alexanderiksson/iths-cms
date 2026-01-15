@@ -28,6 +28,7 @@ export default async function Projects() {
                     projects.map((project, i) => {
                         const slug = project.fields.slug as string;
                         const title = project.fields.title as string;
+                        const tags = project.fields.tags as Array<string>;
                         const desc = project.fields.description as string;
                         const img = project.fields.image as Asset | undefined;
                         const imgURL = img?.fields.file?.url as string;
@@ -38,6 +39,7 @@ export default async function Projects() {
                                 key={i}
                                 slug={slug}
                                 title={title}
+                                tags={tags}
                                 description={
                                     desc.length > 150
                                         ? desc.substring(0, 150) + "..."
