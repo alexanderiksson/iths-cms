@@ -3,6 +3,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Home",
+    description:
+        "Welcome to my personal website where I showcase my projects and skills as a frontend developer.",
 };
 
 export default async function Home() {

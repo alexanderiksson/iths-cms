@@ -26,8 +26,11 @@ export async function generateMetadata({
     const entry = await fetchPage(page);
     if (!entry) return { title: "404 - Page not found" };
 
-    const { metatitle } = entry.fields as { metatitle: string };
-    return { title: metatitle };
+    const { metatitle, metaDescription } = entry.fields as {
+        metatitle: string;
+        metaDescription: string;
+    };
+    return { title: metatitle, description: metaDescription };
 }
 
 export default async function Page({ params }: PageProps) {

@@ -5,6 +5,8 @@ import { Asset } from "contentful";
 
 export const metadata: Metadata = {
     title: "Projects",
+    description:
+        "Browse through my portfolio of projects showcasing my skills and expertise.",
 };
 
 export default async function Projects() {

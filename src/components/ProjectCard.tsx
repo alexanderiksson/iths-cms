@@ -27,7 +27,11 @@ export default function ProjectCard({
                 </h2>
                 <p className="mb-24">{description}</p>
                 <div className="absolute bottom-6 w-full">
-                    <Link href={`/projects/${slug}`} className="button">
+                    <Link
+                        href={`/projects/${slug}`}
+                        className="button"
+                        aria-label={`Read more about ${title}`}
+                    >
                         Read more
                     </Link>
                 </div>
