@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { Asset } from "contentful";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
+import { HiOutlineExternalLink } from "react-icons/hi";
+import Tags from "@/components/Tags";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -21,26 +24,32 @@ export default async function ProjectPage({ params }: PageProps) {
 
     if (!project) return notFound();
 
+    const title = project.fields.title as string;
     const img = project.fields.image as Asset;
-    const tags = project.fields.tags as Array<string>;
+    const tags = project.fields.tags as Array<string> | undefined;
+    const description = project.fields.description as string | undefined;
+    const githubLink = project.fields.githubLink as string | undefined;
+    const url = project.fields.url as string | undefined;
 
     return (
-        <div className="content flex flex-col gap-8">
-            <div className="breadcrumbs">
-                <span>
-                    <Link href="/projects">Projects</Link>
-                </span>
-                <span>/</span>
-                <span>{project.fields.title as string}</span>
-            </div>
+        <div className="content flex flex-col gap-10">
+            <Breadcrumbs
+                currentPage={title}
+                links={[
+                    {
+                        name: "Projects",
+                        href: "/projects",
+                    },
+                ]}
+            />
 
-            <div
+            <section
                 className="w-full sm:py-20 py-12 sm:px-10 px-6 flex flex-col justify-center gap-6 rounded-2xl"
                 style={{
                     backgroundImage: img
                         ? `url(https:${img.fields.file?.url})`
                         : "url(/placeholder.png)",
-                    backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    backgroundColor: "rgba(0, 0, 0, 0.6)",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
@@ -48,33 +57,37 @@ export default async function ProjectPage({ params }: PageProps) {
                 }}
             >
                 <h1 className="text-white sm:text-4xl text-3xl font-semibold">
-                    {project.fields.title as string}
+                    {title}
                 </h1>
 
-                <div className="flex items-center flex-wrap gap-2">
-                    {tags &&
-                        tags.map((tag, i) => (
-                            <span
-                                key={i}
-                                className="bg-neutral-200 py-1 px-3 rounded-full text-sm"
+                {tags && <Tags tags={tags} />}
+            </section>
+
+            {description && <p>{description}</p>}
+
+            {(githubLink || url) && (
+                <section className="flex gap-4">
+                    {githubLink && (
+                        <div className="flex">
+                            <Link
+                                href={githubLink}
+                                className="button"
+                                target="_blank"
                             >
-                                {tag}
-                            </span>
-                        ))}
-                </div>
-            </div>
+                                Show on Github <FaGithub size={20} />
+                            </Link>
+                        </div>
+                    )}
 
-            <p>{project.fields.description as string}</p>
-
-            <div className="flex">
-                <Link
-                    href={project.fields.githubLink as string}
-                    className="button"
-                    target="_blank"
-                >
-                    Show on Github <FaGithub size={20} />
-                </Link>
-            </div>
+                    {url && (
+                        <div className="flex">
+                            <Link href={url} className="button" target="_blank">
+                                Live demo <HiOutlineExternalLink size={20} />
+                            </Link>
+                        </div>
+                    )}
+                </section>
+            )}
         </div>
     );
 }

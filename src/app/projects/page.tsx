@@ -21,15 +21,19 @@ export default async function Projects() {
         <div className="content">
             <h1 className="heading">Projects</h1>
 
-            <div className="flex flex-col gap-8">
+            <section className="flex flex-col gap-10">
                 {projects.length <= 0 ? (
                     <p>No projects found</p>
                 ) : (
                     projects.map((project, i) => {
                         const slug = project.fields.slug as string;
                         const title = project.fields.title as string;
-                        const tags = project.fields.tags as Array<string>;
-                        const desc = project.fields.description as string;
+                        const tags = project.fields.tags as
+                            | Array<string>
+                            | undefined;
+                        const desc = project.fields.description as
+                            | string
+                            | undefined;
                         const img = project.fields.image as Asset | undefined;
                         const imgURL = img?.fields.file?.url as string;
                         const imgAlt = img?.fields.title as string;
@@ -41,7 +45,7 @@ export default async function Projects() {
                                 title={title}
                                 tags={tags}
                                 description={
-                                    desc.length > 150
+                                    desc && desc.length > 150
                                         ? desc.substring(0, 150) + "..."
                                         : desc
                                 }
@@ -55,7 +59,7 @@ export default async function Projects() {
                         );
                     })
                 )}
-            </div>
+            </section>
         </div>
     );
 }

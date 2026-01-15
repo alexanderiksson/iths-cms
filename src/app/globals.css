@@ -2,7 +2,7 @@
 
 :root {
     --background: #ffffff;
-    --secondary: #f4f4f4;
+    --secondary: #e8e8e8;
     --text: #1c1c1c;
     --primary: #484abc;
 }
@@ -73,12 +73,6 @@ h1.heading {
 .button-2:hover {
     background-color: var(--primary);
     color: white;
-}
-
-.breadcrumbs {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 14px;
 }
 
 @media screen and (max-width: 48rem) {

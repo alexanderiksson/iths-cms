@@ -101,10 +101,11 @@ export default function MobileNavMenu({
                         </ul>
                     </nav>
                     <div className="absolute bottom-4">
-                        <ul className="flex gap-6">
+                        <ul className="flex items-center gap-6">
                             {socialLinks.map((link, i) => {
                                 const url = link.fields?.url;
-                                const iconURL = link.fields?.icon?.fields?.file?.url;
+                                const iconURL =
+                                    link.fields?.icon?.fields?.file?.url;
                                 const iconAlt =
                                     link.fields?.icon?.fields?.title || "";
 
@@ -112,7 +113,9 @@ export default function MobileNavMenu({
                                     <li key={i}>
                                         <a href={url || "#"}>
                                             <Image
-                                                src={"https://" + (iconURL || "")}
+                                                src={
+                                                    "https://" + (iconURL || "")
+                                                }
                                                 alt={iconAlt}
                                                 width={20}
                                                 height={20}

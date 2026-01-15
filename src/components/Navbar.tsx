@@ -39,7 +39,7 @@ export default async function Navbar() {
                 </ul>
             </nav>
 
-            <ul className="flex gap-6 text-white">
+            <ul className="flex items-center gap-6 text-white">
                 {socialLinks.items.map((link, i) => {
                     const url = link.fields.url as string;
                     const icon = link.fields.icon as Asset;
