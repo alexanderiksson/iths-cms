@@ -41,7 +41,9 @@ export default async function Page({ params }: PageProps) {
     return (
         <div className="content">
             <h1 className="heading">{title}</h1>
-            <section>{documentToReactComponents(content)}</section>
+            <section className="rich-text">
+                {documentToReactComponents(content)}
+            </section>
         </div>
     );
 }

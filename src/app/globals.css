@@ -16,6 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
 main {
@@ -73,6 +74,52 @@ h1.heading {
 .button-2:hover {
     background-color: var(--primary);
     color: white;
+}
+
+.rich-text h1 {
+    font-size: 2.25rem;
+    font-weight: 500;
+}
+
+.rich-text h2 {
+    font-size: 1.75rem;
+    font-weight: 500;
+}
+
+.rich-text h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.rich-text h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.rich-text h5 {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.rich-text h6 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.rich-text a {
+    color: #0000ee;
+}
+
+.rich-text ul {
+    list-style: disc;
+}
+
+.rich-text ol {
+    list-style: decimal;
+}
+
+.rich-text hr {
+    margin: 1rem 0;
 }
 
 @media screen and (max-width: 48rem) {
