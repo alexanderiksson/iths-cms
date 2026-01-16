@@ -2,24 +2,47 @@ import type { Metadata } from "next";
 import client from "@/lib/contentful";
 import ProjectCard from "@/components/ProjectCard";
 import { Asset } from "contentful";
+import fetchPage from "@/lib/fetchPage";
 
-export const metadata: Metadata = {
-    title: "Projects",
-    description:
-        "Browse through my portfolio of projects showcasing my skills and expertise.",
-};
+interface PageProps {
+    params: Promise<{ slug: string }>;
+}
 
+/* Generate metadata from contentful */
+export async function generateMetadata({
+    params,
+}: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+
+    const entry = await fetchPage(slug);
+    if (!entry) return { title: "404 - Page not found" };
+
+    const { metatitle, metaDescription } = entry.fields as {
+        metatitle: string;
+        metaDescription: string;
+    };
+
+    return { title: metatitle, description: metaDescription };
+}
+
+/* Render page */
 export default async function Projects() {
-    const entries = await client.getEntries({
+    const pageContent = await fetchPage("projects");
+
+    const { title } = pageContent.fields as {
+        title: string;
+    };
+
+    const portfolioEntries = await client.getEntries({
         content_type: "portfolio",
         order: ["-sys.createdAt"],
     });
 
-    const projects = entries.items;
+    const projects = portfolioEntries.items;
 
     return (
         <div className="content">
-            <h1 className="heading">Projects</h1>
+            <h1 className="heading">{title}</h1>
 
             <section className="flex flex-col gap-10">
                 {projects.length <= 0 ? (

@@ -1,23 +1,14 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import client from "@/lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Document } from "@contentful/rich-text-types";
+import fetchPage from "@/lib/fetchPage";
 
 interface PageProps {
     params: Promise<{ page: string }>;
 }
 
-async function fetchPage(slug: string) {
-    const pageContent = await client.getEntries({
-        content_type: "pages",
-        "fields.slug": slug,
-        limit: 1,
-    });
-
-    return pageContent.items[0];
-}
-
+/* Generate metadata from contentful */
 export async function generateMetadata({
     params,
 }: PageProps): Promise<Metadata> {
@@ -30,16 +21,19 @@ export async function generateMetadata({
         metatitle: string;
         metaDescription: string;
     };
+
     return { title: metatitle, description: metaDescription };
 }
 
+/* Render page */
 export default async function Page({ params }: PageProps) {
     const { page } = await params;
-    const entry = await fetchPage(page);
 
-    if (!entry) return notFound();
+    const pageContent = await fetchPage(page);
 
-    const { title, content } = entry.fields as {
+    if (!pageContent) return notFound();
+
+    const { title, content } = pageContent.fields as {
         title: string;
         content: Document;
     };

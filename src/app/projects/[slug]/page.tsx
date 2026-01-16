@@ -14,13 +14,13 @@ interface PageProps {
 export default async function ProjectPage({ params }: PageProps) {
     const { slug } = await params;
 
-    const entry = await client.getEntries({
+    const portfolioEntry = await client.getEntries({
         content_type: "portfolio",
         "fields.slug": slug,
         limit: 1,
     });
 
-    const project = entry.items[0];
+    const project = portfolioEntry.items[0];
 
     if (!project) return notFound();
 
@@ -68,23 +68,19 @@ export default async function ProjectPage({ params }: PageProps) {
             {(githubLink || url) && (
                 <section className="flex gap-4">
                     {githubLink && (
-                        <div className="flex">
-                            <Link
-                                href={githubLink}
-                                className="button"
-                                target="_blank"
-                            >
-                                Show on Github <FaGithub size={20} />
-                            </Link>
-                        </div>
+                        <Link
+                            href={githubLink}
+                            className="button"
+                            target="_blank"
+                        >
+                            Show on Github <FaGithub size={20} />
+                        </Link>
                     )}
 
                     {url && (
-                        <div className="flex">
-                            <Link href={url} className="button" target="_blank">
-                                Live demo <HiOutlineExternalLink size={20} />
-                            </Link>
-                        </div>
+                        <Link href={url} className="button" target="_blank">
+                            Live demo <HiOutlineExternalLink size={20} />
+                        </Link>
                     )}
                 </section>
             )}
