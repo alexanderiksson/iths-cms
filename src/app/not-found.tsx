@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
     return (
         <div className="content my-auto">
-            <h1 className="heading">404 - Page not found</h1>
+            <h1 className="heading">Oops, page not found ☹️</h1>
             <div className="flex">
                 <Link href="/" className="button">
                     Go back home

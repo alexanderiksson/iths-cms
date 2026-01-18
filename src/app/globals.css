@@ -2,7 +2,7 @@
 
 :root {
     --background: #ffffff;
-    --secondary: #e8e8e8;
+    --secondary: #eeeeee;
     --text: #1c1c1c;
     --primary: #484abc;
 }
@@ -119,7 +119,9 @@ h1.heading {
 }
 
 .rich-text hr {
-    margin: 1rem 0;
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid #cccccc;
 }
 
 .rich-text p {
@@ -127,7 +129,7 @@ h1.heading {
 }
 
 .rich-text img {
-    margin: 1rem 0;
+    margin: 2rem 0;
 }
 
 @media screen and (max-width: 48rem) {
