@@ -4,17 +4,9 @@ import ProjectCard from "@/components/ProjectCard";
 import { Asset } from "contentful";
 import fetchPage from "@/lib/fetchPage";
 
-interface PageProps {
-    params: Promise<{ slug: string }>;
-}
-
 /* Generate metadata from contentful */
-export async function generateMetadata({
-    params,
-}: PageProps): Promise<Metadata> {
-    const { slug } = await params;
-
-    const entry = await fetchPage(slug);
+export async function generateMetadata(): Promise<Metadata> {
+    const entry = await fetchPage("projects");
     if (!entry) return { title: "404 - Page not found" };
 
     const { metatitle, metaDescription } = entry.fields as {
@@ -75,7 +67,7 @@ export default async function Projects() {
                                 img={
                                     imgURL
                                         ? `https:${imgURL}`
-                                        : "/placeholder.png"
+                                        : "/portfolio-placeholder.png"
                                 }
                                 imgAlt={imgAlt ?? "Placeholder image"}
                             />

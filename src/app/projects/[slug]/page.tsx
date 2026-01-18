@@ -48,11 +48,11 @@ export default async function ProjectPage({ params }: PageProps) {
                 style={{
                     backgroundImage: img
                         ? `url(https:${img.fields.file?.url})`
-                        : "url(/placeholder.png)",
-                    backgroundColor: "rgba(0, 0, 0, 0.6)",
+                        : "url(/portfolio-placeholder.png)",
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    backgroundPosition: "50% 25%",
                     backgroundBlendMode: "multiply",
                 }}
             >
@@ -66,7 +66,7 @@ export default async function ProjectPage({ params }: PageProps) {
             {description && <p>{description}</p>}
 
             {(githubLink || url) && (
-                <section className="flex gap-4">
+                <section className="flex flex-wrap gap-4">
                     {githubLink && (
                         <Link
                             href={githubLink}

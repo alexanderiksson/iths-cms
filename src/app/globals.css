@@ -122,6 +122,14 @@ h1.heading {
     margin: 1rem 0;
 }
 
+.rich-text p {
+    margin-bottom: 1rem;
+}
+
+.rich-text img {
+    margin: 1rem 0;
+}
+
 @media screen and (max-width: 48rem) {
     h1.heading {
         font-size: 30px;
