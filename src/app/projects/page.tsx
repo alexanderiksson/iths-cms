@@ -4,6 +4,8 @@ import ProjectCard from "@/components/ProjectCard";
 import { Asset } from "contentful";
 import fetchPage from "@/lib/fetchPage";
 
+export const revalidate = 60;
+
 /* Generate metadata from contentful */
 export async function generateMetadata(): Promise<Metadata> {
     const entry = await fetchPage("projects");
