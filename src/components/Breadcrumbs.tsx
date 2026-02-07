@@ -10,7 +10,7 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ currentPage, links }: BreadcrumbsProps) {
     return (
-        <div className="flex gap-2 text-sm">
+        <div className="flex gap-2 sm:text-sm">
             {links.map((link, i) => (
                 <div key={i} className="flex gap-2">
                     <span className="text-neutral-600">
