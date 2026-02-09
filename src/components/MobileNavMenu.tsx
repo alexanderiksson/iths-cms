@@ -60,7 +60,7 @@ export default function MobileNavMenu({
                         aria-label="Open navigation menu"
                         onClick={() => setIsOpen(true)}
                     >
-                        <LuMenu size={24} />
+                        <LuMenu size={28} />
                     </button>
                 </div>
             </header>
@@ -78,7 +78,7 @@ export default function MobileNavMenu({
                             aria-label="Close navigation menu"
                             onClick={() => setIsOpen(false)}
                         >
-                            <IoClose size={24} />
+                            <IoClose size={28} />
                         </button>
                     </div>
                     <nav className="absolute top-0 left-0 w-full h-screen flex items-center">
