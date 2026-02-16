@@ -5,6 +5,7 @@ import { BLOCKS } from "@contentful/rich-text-types";
 import type { Document } from "@contentful/rich-text-types";
 import fetchPage from "@/lib/fetchPage";
 import Image from "next/image";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 interface PageProps {
     params: Promise<{ page: string }>;
@@ -44,21 +45,33 @@ export default async function Page({ params }: PageProps) {
         <div className="content">
             <h1 className="heading">{title}</h1>
             <section className="rich-text">
-                {documentToReactComponents(content, {
-                    renderNode: {
-                        [BLOCKS.EMBEDDED_ASSET]: (node) => {
-                            const { file, title } = node.data.target.fields;
-                            return (
-                                <Image
-                                    src={`https:${file.url}`}
-                                    alt={title}
-                                    width={file.details?.image?.width}
-                                    height={file.details?.image?.height}
-                                />
-                            );
+                <AnimatedContent
+                    distance={16}
+                    direction="vertical"
+                    reverse={false}
+                    duration={1}
+                    initialOpacity={0}
+                    animateOpacity
+                    scale={1}
+                    threshold={0.1}
+                    delay={0}
+                >
+                    {documentToReactComponents(content, {
+                        renderNode: {
+                            [BLOCKS.EMBEDDED_ASSET]: (node) => {
+                                const { file, title } = node.data.target.fields;
+                                return (
+                                    <Image
+                                        src={`https:${file.url}`}
+                                        alt={title}
+                                        width={file.details?.image?.width}
+                                        height={file.details?.image?.height}
+                                    />
+                                );
+                            },
                         },
-                    },
-                })}
+                    })}
+                </AnimatedContent>
             </section>
         </div>
     );

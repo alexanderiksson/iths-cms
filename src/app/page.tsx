@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import fetchPage from "@/lib/fetchPage";
 import { Document } from "@contentful/rich-text-types";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import TextType from "@/components/ui/TextType";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 /* Generate metadata from contentful */
 export async function generateMetadata(): Promise<Metadata> {
@@ -28,18 +30,49 @@ export default async function Home() {
     return (
         <div className="content my-auto">
             <section className="flex flex-col gap-6">
-                <div className="sm:text-4xl text-3xl font-medium leading-normal">
-                    {documentToReactComponents(content)}
-                </div>
+                <AnimatedContent
+                    distance={16}
+                    direction="vertical"
+                    reverse={false}
+                    duration={1}
+                    initialOpacity={0}
+                    animateOpacity
+                    scale={1}
+                    threshold={0.1}
+                    delay={0}
+                >
+                    <div className="sm:text-4xl text-3xl font-medium leading-normal">
+                        <TextType
+                            text={documentToPlainTextString(content)}
+                            loop={false}
+                            typingSpeed={50}
+                            showCursor
+                            cursorCharacter="_"
+                            cursorBlinkDuration={0.5}
+                        />
+                    </div>
+                </AnimatedContent>
 
-                <div className="flex gap-4">
-                    <Link href="/projects" className="button">
-                        Projects
-                    </Link>
-                    <Link href="/contact" className="button-2">
-                        Contact me
-                    </Link>
-                </div>
+                <AnimatedContent
+                    distance={16}
+                    direction="vertical"
+                    reverse={false}
+                    duration={1}
+                    initialOpacity={0}
+                    animateOpacity
+                    scale={1}
+                    threshold={0.1}
+                    delay={0.2}
+                >
+                    <div className="flex gap-4">
+                        <Link href="/projects" className="button">
+                            Projects
+                        </Link>
+                        <Link href="/contact" className="button-2">
+                            Contact me
+                        </Link>
+                    </div>
+                </AnimatedContent>
             </section>
         </div>
     );

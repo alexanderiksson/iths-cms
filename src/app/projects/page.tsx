@@ -3,6 +3,7 @@ import client from "@/lib/contentful";
 import ProjectCard from "@/components/ProjectCard";
 import { Asset } from "contentful";
 import fetchPage from "@/lib/fetchPage";
+import AnimatedContent from "@/components/ui/AnimatedContent";
 
 export const revalidate = 60;
 
@@ -56,23 +57,36 @@ export default async function Projects() {
                         const imgAlt = img?.fields.title as string;
 
                         return (
-                            <ProjectCard
+                            <AnimatedContent
                                 key={i}
-                                slug={slug}
-                                title={title}
-                                tags={tags}
-                                description={
-                                    desc && desc.length > 150
-                                        ? desc.substring(0, 150) + "..."
-                                        : desc
-                                }
-                                img={
-                                    imgURL
-                                        ? `https:${imgURL}`
-                                        : "/portfolio-placeholder.png"
-                                }
-                                imgAlt={imgAlt ?? "Placeholder image"}
-                            />
+                                distance={16}
+                                direction="vertical"
+                                reverse={false}
+                                duration={1}
+                                initialOpacity={0}
+                                animateOpacity
+                                scale={1}
+                                threshold={0}
+                                delay={0.1 * i}
+                            >
+                                <ProjectCard
+                                    key={i}
+                                    slug={slug}
+                                    title={title}
+                                    tags={tags}
+                                    description={
+                                        desc && desc.length > 150
+                                            ? desc.substring(0, 150) + "..."
+                                            : desc
+                                    }
+                                    img={
+                                        imgURL
+                                            ? `https:${imgURL}`
+                                            : "/portfolio-placeholder.png"
+                                    }
+                                    imgAlt={imgAlt ?? "Placeholder image"}
+                                />
+                            </AnimatedContent>
                         );
                     })
                 )}
