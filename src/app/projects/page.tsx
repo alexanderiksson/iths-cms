@@ -67,7 +67,7 @@ export default async function Projects() {
                                 animateOpacity
                                 scale={1}
                                 threshold={0}
-                                delay={0.1 * i}
+                                delay={0}
                             >
                                 <ProjectCard
                                     key={i}
