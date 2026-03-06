@@ -32,16 +32,15 @@ export default async function ProjectPage({ params }: PageProps) {
     const githubLink = project.fields.githubLink as string | undefined;
     const url = project.fields.url as string | undefined;
 
+    const imgUrl = img?.fields.file?.url
+        ? `https:${img.fields.file.url}`
+        : "/portfolio-placeholder.png";
+
     return (
         <div className="content flex flex-col gap-10">
             <Breadcrumbs
                 currentPage={title}
-                links={[
-                    {
-                        name: "Projects",
-                        href: "/projects",
-                    },
-                ]}
+                links={[{ name: "Projects", href: "/projects" }]}
             />
 
             <AnimatedContent
@@ -56,23 +55,19 @@ export default async function ProjectPage({ params }: PageProps) {
                 delay={0}
             >
                 <section
-                    className="w-full sm:py-20 py-12 sm:px-10 px-6 flex flex-col justify-center gap-6 rounded-2xl"
+                    className="w-full min-h-72 sm:min-h-96 flex flex-col justify-end gap-4 rounded-3xl p-6 sm:p-10"
                     style={{
-                        backgroundImage: img
-                            ? `url(https:${img.fields.file?.url})`
-                            : "url(/portfolio-placeholder.png)",
-                        backgroundColor: "rgba(0, 0, 0, 0.7)",
+                        backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.5) 100%), url(${imgUrl})`,
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "cover",
                         backgroundPosition: "50% 25%",
-                        backgroundBlendMode: "multiply",
                     }}
                 >
-                    <h1 className="text-white sm:text-4xl text-3xl font-semibold">
+                    {tags && <Tags tags={tags} className="bg-white/15 border border-white/30 text-white backdrop-blur-sm" />}
+
+                    <h1 className="text-white sm:text-5xl text-3xl font-semibold leading-tight">
                         {title}
                     </h1>
-
-                    {tags && <Tags tags={tags} />}
                 </section>
             </AnimatedContent>
 
@@ -85,42 +80,38 @@ export default async function ProjectPage({ params }: PageProps) {
                 animateOpacity
                 scale={1}
                 threshold={0.1}
-                delay={0.2}
+                delay={0.15}
             >
-                {description && <p>{description}</p>}
+                <div className="flex flex-col gap-8">
+                    {description && (
+                        <p className="text-lg leading-relaxed">{description}</p>
+                    )}
+
+                    {(githubLink || url) && (
+                        <div className="flex flex-wrap gap-3">
+                            {githubLink && (
+                                <Link
+                                    href={githubLink}
+                                    className="button"
+                                    target="_blank"
+                                >
+                                    <FaGithub size={18} /> GitHub
+                                </Link>
+                            )}
+                            {url && (
+                                <Link
+                                    href={url}
+                                    className="button-2"
+                                    target="_blank"
+                                >
+                                    Live demo{" "}
+                                    <HiOutlineExternalLink size={18} />
+                                </Link>
+                            )}
+                        </div>
+                    )}
+                </div>
             </AnimatedContent>
-
-            {(githubLink || url) && (
-                <AnimatedContent
-                    distance={16}
-                    direction="vertical"
-                    reverse={false}
-                    duration={1}
-                    initialOpacity={0}
-                    animateOpacity
-                    scale={1}
-                    threshold={0.1}
-                    delay={0.3}
-                >
-                    <section className="flex flex-wrap gap-4">
-                        {githubLink && (
-                            <Link
-                                href={githubLink}
-                                className="button"
-                                target="_blank"
-                            >
-                                Show on Github <FaGithub size={20} />
-                            </Link>
-                        )}
-
-                        {url && (
-                            <Link href={url} className="button" target="_blank">
-                                Live demo <HiOutlineExternalLink size={20} />
-                            </Link>
-                        )}
-                    </section>
-                </AnimatedContent>
-            )}
         </div>
     );
 }

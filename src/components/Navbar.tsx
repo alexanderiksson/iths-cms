@@ -1,17 +1,12 @@
 import Link from "next/link";
-import Image from "next/image";
 import client from "../lib/contentful";
-import { Asset, Entry } from "contentful";
+import { Entry } from "contentful";
+import ThemeToggle from "./ThemeToggle";
 
 export default async function Navbar() {
     const navLinks = await client.getEntries({
         content_type: "navigation",
         order: ["fields.order"],
-    });
-
-    const socialLinks = await client.getEntries({
-        content_type: "socialLinks",
-        order: ["sys.createdAt"],
     });
 
     return (
@@ -39,27 +34,7 @@ export default async function Navbar() {
                 </ul>
             </nav>
 
-            <ul className="flex items-center gap-6 text-white">
-                {socialLinks.items.map((link, i) => {
-                    const url = link.fields.url as string;
-                    const icon = link.fields.icon as Asset;
-                    const iconURL = icon.fields.file?.url as string;
-                    const iconAlt = icon.fields.title as string;
-
-                    return (
-                        <li key={i}>
-                            <a href={url}>
-                                <Image
-                                    src={"https://" + iconURL}
-                                    alt={iconAlt}
-                                    width={20}
-                                    height={20}
-                                />
-                            </a>
-                        </li>
-                    );
-                })}
-            </ul>
+            <ThemeToggle />
         </aside>
     );
 }

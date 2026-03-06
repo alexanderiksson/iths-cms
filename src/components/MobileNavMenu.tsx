@@ -4,8 +4,7 @@ import Link from "next/link";
 import { LuMenu } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
-
-import Image from "next/image";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavLinkFields {
     name: string;
@@ -16,33 +15,14 @@ interface NavLinkFields {
     };
 }
 
-interface SocialLinkFields {
-    url: string;
-    icon: {
-        fields: {
-            file: {
-                url: string;
-            };
-            title: string;
-        };
-    };
-}
-
 interface MobileNavMenuProps {
     navLinks: Array<{
         fields?: NavLinkFields;
         sys?: Record<string, unknown>;
     }>;
-    socialLinks: Array<{
-        fields?: SocialLinkFields;
-        sys?: Record<string, unknown>;
-    }>;
 }
 
-export default function MobileNavMenu({
-    navLinks,
-    socialLinks,
-}: MobileNavMenuProps) {
+export default function MobileNavMenu({ navLinks }: MobileNavMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -100,31 +80,8 @@ export default function MobileNavMenu({
                             })}
                         </ul>
                     </nav>
-                    <div className="absolute bottom-4">
-                        <ul className="flex items-center gap-6">
-                            {socialLinks.map((link, i) => {
-                                const url = link.fields?.url;
-                                const iconURL =
-                                    link.fields?.icon?.fields?.file?.url;
-                                const iconAlt =
-                                    link.fields?.icon?.fields?.title || "";
-
-                                return (
-                                    <li key={i}>
-                                        <a href={url || "#"}>
-                                            <Image
-                                                src={
-                                                    "https://" + (iconURL || "")
-                                                }
-                                                alt={iconAlt}
-                                                width={20}
-                                                height={20}
-                                            />
-                                        </a>
-                                    </li>
-                                );
-                            })}
-                        </ul>
+                    <div className="absolute bottom-4 flex flex-col gap-6">
+                        <ThemeToggle />
                     </div>
                 </div>
             </div>

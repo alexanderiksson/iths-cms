@@ -43,19 +43,32 @@ export default async function Page({ params }: PageProps) {
 
     return (
         <div className="content">
-            <h1 className="heading">{title}</h1>
-            <section className="rich-text">
-                <AnimatedContent
-                    distance={16}
-                    direction="vertical"
-                    reverse={false}
-                    duration={1}
-                    initialOpacity={0}
-                    animateOpacity
-                    scale={1}
-                    threshold={0.1}
-                    delay={0}
-                >
+            <AnimatedContent
+                distance={16}
+                direction="vertical"
+                reverse={false}
+                duration={1}
+                initialOpacity={0}
+                animateOpacity
+                scale={1}
+                threshold={0.1}
+                delay={0}
+            >
+                <h1 className="heading">{title}</h1>
+            </AnimatedContent>
+
+            <AnimatedContent
+                distance={16}
+                direction="vertical"
+                reverse={false}
+                duration={1}
+                initialOpacity={0}
+                animateOpacity
+                scale={1}
+                threshold={0.1}
+                delay={0.1}
+            >
+                <section className="rich-text">
                     {documentToReactComponents(content, {
                         renderNode: {
                             [BLOCKS.EMBEDDED_ASSET]: (node) => {
@@ -66,13 +79,14 @@ export default async function Page({ params }: PageProps) {
                                         alt={title}
                                         width={file.details?.image?.width}
                                         height={file.details?.image?.height}
+                                        className="rounded-2xl"
                                     />
                                 );
                             },
                         },
                     })}
-                </AnimatedContent>
-            </section>
+                </section>
+            </AnimatedContent>
         </div>
     );
 }
